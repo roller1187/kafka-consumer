@@ -1,3 +1,5 @@
 /.metadata/
 RemoteSystemsTempFiles
-/.recommenders
+.recommenders
+keystore.jks
+ca.crt
