@@ -1,6 +1,9 @@
 /.metadata/
 RemoteSystemsTempFiles
 .recommenders
-keystore.jks
 ca.crt
 target/*
+/target/
+.classpath
+.project
+.settings
