@@ -12,15 +12,15 @@
 
 3) oc login <cluster URL>
 
-4) oc new-project kafka_demo
+4) oc new-project kafka-demo
 
-5) oc project kafka_demo
+5) oc project kafka-demo
 
 6) Run:
 
-* oc adm policy add-cluster-role-to-user strimzi-cluster-operator-namespaced --serviceaccount strimzi-cluster-operator -n kafka_demo
-* oc adm policy add-cluster-role-to-user strimzi-entity-operator --serviceaccount strimzi-cluster-operator -n kafka_demo
-* oc adm policy add-cluster-role-to-user strimzi-topic-operator --serviceaccount strimzi-cluster-operator -n kafka_demo
+* oc adm policy add-cluster-role-to-user strimzi-cluster-operator-namespaced --serviceaccount strimzi-cluster-operator -n kafka-demo
+* oc adm policy add-cluster-role-to-user strimzi-entity-operator --serviceaccount strimzi-cluster-operator -n kafka-demo
+* oc adm policy add-cluster-role-to-user strimzi-topic-operator --serviceaccount strimzi-cluster-operator -n kafka-demo
 
 7) oc apply -f kafka_demo/install/cluster-operator/
 
