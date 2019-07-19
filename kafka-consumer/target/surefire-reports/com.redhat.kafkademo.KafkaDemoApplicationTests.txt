@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.redhat.kafkademo.KafkaDemoApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.636 s - in com.redhat.kafkademo.KafkaDemoApplicationTests
