@@ -1,4 +1,4 @@
-package com.redhat.kafkademo;
+package com.redhat.kafkaconsumer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
