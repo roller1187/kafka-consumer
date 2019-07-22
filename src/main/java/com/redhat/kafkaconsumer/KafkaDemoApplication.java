@@ -26,11 +26,11 @@ public class KafkaDemoApplication implements CommandLineRunner {
 
     @KafkaListener(topics = "my-topic")
     public void listen(ConsumerRecord<?, ?> cr) throws Exception {
-        logger.info("MESSAGE RECEIVED: \n " + 
-        				"    TOPIC: " + cr.value().toString() + "\n" +
-        				"    PARTITION: " + cr.partition() + "\n" +
-        				"    OFFSET: " + cr.offset() + "\n" +
-        				"    VALUE: " + cr.value().toString());
+        logger.info("MESSAGE RECEIVED: \n" + 
+        				"	TOPIC: " + cr.topic() + "\n" +
+        				"	PARTITION: " + cr.partition() + "\n" +
+        				"	OFFSET: " + cr.offset() + "\n" +
+        				"	VALUE: " + cr.value().toString());
         latch.countDown();
     }
 }
