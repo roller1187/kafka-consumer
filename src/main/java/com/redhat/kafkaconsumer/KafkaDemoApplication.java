@@ -6,7 +6,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,9 +13,6 @@ import org.springframework.kafka.annotation.KafkaListener;
 
 @SpringBootApplication
 public class KafkaDemoApplication implements CommandLineRunner {
-	
-	@Value("${KAFKA_BACKEND_TOPIC}")
-	private String kafkaBackendTopic;
 	
 	public static Logger logger = LoggerFactory.getLogger(KafkaDemoApplication.class);
 	
@@ -32,8 +28,7 @@ public class KafkaDemoApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {}
 
-//    @KafkaListener(topics = kafkaBackendTopic)
-    @KafkaListener(topics = "#{kafkaBackendTopic}")
+    @KafkaListener(topics = "${kafka.backend.topic}")
     public void listen(ConsumerRecord<?, ?> cr) throws Exception {
         logger.info("MESSAGE RECEIVED: \n" + 
         				"	TOPIC: " + cr.topic() + "\n" +
