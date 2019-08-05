@@ -88,7 +88,7 @@ public class KafkaDemoController {
 	public String sendMessage(JSONObject value) throws Exception {
     	String encodedJSONObject = Base64.getUrlEncoder().encodeToString(value.toJSONString().getBytes());
         String url = "http://kafka-producer-kafka-demo.apps.postal.redhatgov.io/msg/" 
-        				+ encodedJSONObject + "/${kafka.backend.topic}";
+        				+ encodedJSONObject + "/" + System.getenv("KAFKA_UI_TOPIC");
     	return postToProducer(url);
     }
     
