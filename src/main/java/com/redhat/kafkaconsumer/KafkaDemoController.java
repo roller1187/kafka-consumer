@@ -12,8 +12,12 @@ import java.util.Random;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Value;
 
 public class KafkaDemoController {
+	
+	@Value("${KAFKA_UI_TOPIC}")
+	private String kafkaUITopic;
 	
 	/* JSON Format:
 	{
@@ -88,7 +92,7 @@ public class KafkaDemoController {
 	public String sendMessage(JSONObject value) throws Exception {
     	String encodedJSONObject = Base64.getUrlEncoder().encodeToString(value.toJSONString().getBytes());
         String url = "http://kafka-producer-kafka-demo.apps.postal.redhatgov.io/msg/" 
-        				+ encodedJSONObject + "/ui-topic";
+        				+ encodedJSONObject + "/" + kafkaUITopic;
     	return postToProducer(url);
     }
     
