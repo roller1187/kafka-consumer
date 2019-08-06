@@ -12,17 +12,13 @@ This purpose of this service is to:
 ```sh
 oc login <openshift_cluster>
 ```
-  2. Create a new or use existing project:
+  2. Create a new project:
 ```sh
 oc new-project <project_name>
 ```
-OR
-```sh
-oc project <project_name>
-```
   3. Deploy the service using s2i (Source-2-Image). Don't forget to provide a Kafka topic:
 ```sh
-oc new-app <project_name> --env KAFKA_BACKEND_TOPIC=<topic_name>
+oc new-app https://github.com/roller1187/kafka-consumer.git --env KAFKA_BACKEND_TOPIC=my-topic-$(oc whoami)
 ```
 
 *Acrostic example:
