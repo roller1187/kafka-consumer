@@ -1,13 +1,14 @@
 ![OpenShift](https://developers.redhat.com/blog/wp-content/uploads/2018/10/Untitled-drawing-4.png)
-# Kafka Consumer
+# Acrostic Kafka Consumer
 
 This purpose of this service is to:
   1. Listen to a Kafka topic and consume messages
   2. Produce an acrostic* map based on the message from the topic
   3. Send a request to a separate producer containing the acrostic output (The output will be posted into a separate UI topic)
 
+---
 
-# Instructions for deploying on OpenShift
+## Instructions for deploying on OpenShift:
   1. Login to OpenShift:
 ```sh
 oc login <openshift_cluster>
