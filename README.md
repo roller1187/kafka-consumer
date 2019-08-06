@@ -14,7 +14,7 @@ oc login <openshift_cluster>
 ```
   2. Create a new project:
 ```sh
-oc new-project <project_name>
+oc new-project kafka-$(oc whoami)
 ```
   3. Deploy the service using s2i (Source-2-Image). Don't forget to provide a Kafka topic:
 ```sh
