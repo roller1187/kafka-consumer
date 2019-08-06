@@ -78,7 +78,6 @@ public class KafkaDemoController {
 			JSONMap.put("letter", "" + messageCharacter + ""); 
 	        JSONMap.put("word", JSONObject.get("word").toString()); 
 	        JSONOutputArray.add(JSONMap);
-	        
 		}
         JSONOutputObject.put("acrostic", JSONOutputArray);
         KafkaDemoApplication.logger.info("Payload: " + JSONOutputObject);
