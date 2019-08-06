@@ -19,7 +19,7 @@ oc new-project kafka-$(oc whoami)
   3. Deploy the service using s2i (Source-2-Image). Don't forget to provide a Kafka topic:
 ```sh
 oc new-app --env KAFKA_BACKEND_TOPIC=my-topic-$(oc whoami) \
-    openshift/java:8~https://github.com/roller1187/kafka-consumer.git
+    redhat-openjdk19-openshift:1.4~https://github.com/roller1187/kafka-consumer.git
 ```
 
 *Acrostic example:
