@@ -37,7 +37,8 @@ public class KafkaDemoApplication implements CommandLineRunner {
         				"	VALUE: " + cr.value().toString());
         
         JSONAcrostic = kafkaController.createAcrostic(cr.value().toString());
-        logger.info("Message forwarded to ui topic: " + kafkaController.sendMessage(JSONAcrostic));
+        logger.info("Message forwarded to \""+ System.getenv("KAFKA_BACKEND_TOPIC")
+        		    + "\": " + kafkaController.sendMessage(JSONAcrostic));
         latch.countDown();
     }
 }
