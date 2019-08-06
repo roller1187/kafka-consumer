@@ -18,7 +18,8 @@ oc new-project <project_name>
 ```
   3. Deploy the service using s2i (Source-2-Image). Don't forget to provide a Kafka topic:
 ```sh
-oc new-app https://github.com/roller1187/kafka-consumer.git --env KAFKA_BACKEND_TOPIC=my-topic-$(oc whoami)
+oc new-app https://github.com/roller1187/kafka-consumer.git \
+    --env KAFKA_BACKEND_TOPIC=my-topic-$(oc whoami)
 ```
 
 *Acrostic example:
