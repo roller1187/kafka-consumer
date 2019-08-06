@@ -26,5 +26,6 @@ oc new-app <project_name> --env KAFKA_BACKEND_TOPIC=<topic_name>
 ```
 
 *Acrostic example:
+
 ![Acrostic](https://www.researchgate.net/profile/Andrew_Finch/publication/260593143/figure/fig3/AS:392472879484941@1470584234596/Acrostic-poem-Teaching-points-Spelling-Vocabulary-Dictionary-Holmes-Moulton-2001.png)
 
