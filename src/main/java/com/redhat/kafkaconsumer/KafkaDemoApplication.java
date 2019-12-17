@@ -1,5 +1,8 @@
 package com.redhat.kafkaconsumer;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -19,7 +22,13 @@ public class KafkaDemoApplication implements CommandLineRunner {
 	JSONObject JSONAcrostic = new JSONObject();
 	static KafkaDemoController kafkaController = new KafkaDemoController();
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws GeneralSecurityException, IOException {
+		Properties props = new Properties();
+		props.load(KafkaDemoApplication.class.getClassLoader().getResourceAsStream("application.properties"));
+		
+		TrustStore.createFromCrtFile(props.getProperty("kafka.cert.path"),
+				props.getProperty("spring.kafka.properties.ssl.truststore.location"),
+				props.getProperty("spring.kafka.properties.ssl.truststore.password").toCharArray());
 		SpringApplication.run(KafkaDemoApplication.class, args);
 	}
 	
