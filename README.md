@@ -18,13 +18,27 @@ oc login <openshift_cluster>
 ```sh
 oc new-project kafka-$(oc whoami)
 ```
-  3. Deploy the service using s2i (Source-2-Image). Don't forget to provide a Kafka topic:
+  3. Extract Kafka certificate
+```sh
+oc extract secret/my-cluster-cluster-ca-cert --keys=ca.crt --confirm=true -n kafka
+```
+  4. Create ConfigMap from Kafka certificate
+```sh
+oc create configmap kafka-cert --from-file=./ca.crt
+```
+
+  5. Deploy the service using s2i (Source-2-Image). Don't forget to provide a Kafka topic:
 ```sh
 oc new-app redhat-openjdk18-openshift:1.4~https://github.com/roller1187/kafka-consumer.git \
     --env KAFKA_BACKEND_TOPIC=my-topic \
     --env KAFKA_UI_TOPIC=ui-topic \
     --env KAFKA_PRODUCER_URL=http://kafka-producer.kafka-$(oc whoami).svc.cluster.local:8080 \
     --env SPRING_KAFKA_BOOTSTRAP_SERVERS=my-cluster-kafka-external-bootstrap.kafka-demo.svc.cluster.local:9094
+```
+
+  6. Add ConfigMap to Consumer
+```sh
+oc set volume dc/kafka-consumer --add --type=configmap --configmap-name=kafka-cert --mount-path=/tmp/certs
 ```
 
 *Acrostic example:
