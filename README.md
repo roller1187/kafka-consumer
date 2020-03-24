@@ -29,7 +29,7 @@ oc create configmap kafka-cert --from-file=./ca.crt
 
   5. Deploy the service using s2i (Source-2-Image). Don't forget to provide a Kafka topic:
 ```sh
-oc new-app redhat-openjdk18-openshift:1.4~https://github.com/roller1187/kafka-consumer.git \
+oc new-app openjdk-11-rhel7:1.0~https://github.com/roller1187/kafka-consumer.git \
     --env KAFKA_BACKEND_TOPIC=my-topic \
     --env KAFKA_UI_TOPIC=ui-topic \
     --env KAFKA_PRODUCER_URL=http://kafka-producer.kafka-$(oc whoami).svc.cluster.local:8080 \
