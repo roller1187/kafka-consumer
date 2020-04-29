@@ -15,6 +15,9 @@ import org.json.simple.parser.JSONParser;
 
 public class KafkaDemoController {
 	
+	static Puzzle puzzle = new Puzzle();
+	static PuzzleService puzzleService = new PuzzleService();
+	
 	/* JSON Format:
 	{
 		"message": "abc",
@@ -40,6 +43,7 @@ public class KafkaDemoController {
     	JSONObject JSONOutputObject = new JSONObject(); 
         
         JSONOutputObject.put("message", message); 
+        puzzle.setMessage(message);
         Map<String, String> JSONMap; 
         JSONArray JSONOutputArray = new JSONArray(); 
 
@@ -80,6 +84,7 @@ public class KafkaDemoController {
 	        JSONOutputArray.add(JSONMap);
 		}
         JSONOutputObject.put("acrostic", JSONOutputArray);
+        puzzle.setMap(JSONOutputArray.toJSONString());
         KafkaDemoApplication.logger.info("Payload: " + JSONOutputObject);
         return JSONOutputObject;
 	}
@@ -88,6 +93,10 @@ public class KafkaDemoController {
     	String encodedJSONObject = Base64.getUrlEncoder().encodeToString(value.toJSONString().getBytes());
         String url = System.getenv("KAFKA_PRODUCER_URL") + "/msg/"
         				+ encodedJSONObject + "/" + System.getenv("KAFKA_UI_TOPIC");
+        
+        // Persist to DB
+        puzzleService.save(puzzle);
+        
     	return postToProducer(url);
     }
     
