@@ -52,6 +52,7 @@ public class KafkaDemoController {
     	char[] messageArray = message.toCharArray();
         JSONObject JSONOutputObject = new JSONObject();
         
+        puzzle = new Puzzle();
         JSONOutputObject.put("message", message); 
         puzzle.setMessage(message);
         Map<String, String> JSONMap; 
@@ -104,7 +105,6 @@ public class KafkaDemoController {
         
         // Persist to DB
         puzzleService.save(puzzle);
-        puzzle.setId(null);
     	return postToProducer(url);
     }
     
