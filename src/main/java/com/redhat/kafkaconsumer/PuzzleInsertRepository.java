@@ -1,9 +1,16 @@
 package com.redhat.kafkaconsumer;
 
-import com.redhat.kafkaconsumer.Puzzle;
+// import com.redhat.kafkaconsumer.Puzzle;
+// import org.springframework.data.jpa.repository.JpaRepository;
+
+// public interface PuzzleInsertRepository extends JpaRepository<Puzzle, String> {
+// }
+
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
- 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public interface PuzzleInsertRepository extends PagingAndSortingRepository<Puzzle, Long>, 
         JpaSpecificationExecutor<Puzzle> {
 }
