@@ -40,10 +40,4 @@ public class Puzzle {
     public void setMap(String map) {
 		this.map = map;
     }
-    public long getId() {
-		return id;
-    }
-    public void setId(Long id) {
-		this.id = id;
-	}
 }
