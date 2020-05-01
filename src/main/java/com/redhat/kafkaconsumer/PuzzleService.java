@@ -1,7 +1,5 @@
 package com.redhat.kafkaconsumer;
 
-import com.redhat.kafkaconsumer.Puzzle;
-import com.redhat.kafkaconsumer.PuzzleInsertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
  
@@ -9,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class PuzzleService {
     
     @Autowired
-    private PuzzleInsertRepository puzzleRepository;
+    PuzzleInsertRepository puzzleRepository;
     
     public Puzzle save(Puzzle puzzle) {
         return puzzleRepository.save(puzzle);

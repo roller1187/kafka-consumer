@@ -1,71 +1,43 @@
 package com.redhat.kafkaconsumer;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-@Entity
-public class Puzzle {
+import org.springframework.stereotype.Component;
 
-//	public Puzzle(String message, String map) {
-//        this.message = message;
-//        this.map = map;
-//    }
-//	
+@Component
+@Entity
+@Table
+public class Puzzle {
+    
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private long id;
 
     @NotBlank
+    @Column
     private String message;
 
     @NotBlank
+    @Column(columnDefinition = "TEXT")
     private String map;
     
     public String getMessage() {
 		return message;
-	}
-    
+    }
     public void setMessage(String message) {
 		this.message = message;
 	}
-    
     public String getMap() {
 		return map;
-	}
-    	
+    }
     public void setMap(String map) {
 		this.map = map;
-	}
-    
-//    public Puzzle(String message, String map) {
-//        this.message = message;
-//        this.map = map;
-//    }
-//
-//    @Id
-//    @GeneratedValue(strategy=GenerationType.AUTO)
-//    private Long id;
-//
-//    private String message;
-//
-//    private String map;
-//    
-//    public String getMessage() {
-//		return message;
-//	}
-//
-//	public void setMessage(String message) {
-//		this.message = message;
-//	}
-//
-//	public String getMap() {
-//		return map;
-//	}
-//
-//	public void setMap(String map) {
-//		this.map = map;
-//	}
+    }
 }

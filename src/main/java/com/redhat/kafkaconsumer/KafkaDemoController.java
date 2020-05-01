@@ -8,16 +8,26 @@ import java.util.Base64;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class KafkaDemoController {
-	
-	static Puzzle puzzle = new Puzzle();
-	static PuzzleService puzzleService = new PuzzleService();
-	
+
+    public static Logger logger = LoggerFactory.getLogger(KafkaDemoApplication.class);
+
+    @Autowired
+    PuzzleService puzzleService;
+    
+    @Autowired
+    Puzzle puzzle;
+
 	/* JSON Format:
 	{
 		"message": "abc",
@@ -40,8 +50,9 @@ public class KafkaDemoController {
 	@SuppressWarnings("unchecked")
 	public JSONObject createAcrostic(String message) throws Exception {
     	char[] messageArray = message.toCharArray();
-    	JSONObject JSONOutputObject = new JSONObject(); 
+        JSONObject JSONOutputObject = new JSONObject();
         
+        puzzle = new Puzzle();
         JSONOutputObject.put("message", message); 
         puzzle.setMessage(message);
         Map<String, String> JSONMap; 
@@ -75,9 +86,7 @@ public class KafkaDemoController {
 			while ( JSONObject.get("word").toString().length() < 2 ) {
 				n = rand.nextInt(JSONArray.size());
 				JSONObject = (JSONObject) JSONArray.get(n);
-			}
-			KafkaDemoApplication.logger.info(JSONObject.get("word").toString());
-			
+			}			
 			JSONMap = new LinkedHashMap<String, String>(2);
 			JSONMap.put("letter", "" + messageCharacter + ""); 
 	        JSONMap.put("word", JSONObject.get("word").toString()); 
@@ -96,7 +105,6 @@ public class KafkaDemoController {
         
         // Persist to DB
         puzzleService.save(puzzle);
-        
     	return postToProducer(url);
     }
     
